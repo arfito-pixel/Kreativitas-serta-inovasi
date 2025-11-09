@@ -1,0 +1,205 @@
+<!--
+File: index.html
+Judul: Kreativitas & Inovasi (template untuk GitHub Pages)
+Petunjuk singkat:
+1. Buat repository baru di GitHub (mis. nama: kreativitas-inovasi).
+2. Upload file ini sebagai index.html ke branch utama (main/master).
+3. Di Settings > Pages, aktifkan GitHub Pages untuk branch utama -> root.
+4. Tunggu beberapa menit, lalu buka alamat GitHub Pages repo Anda.
+
+Fitur yang disertakan:
+- Halaman statis responsive (HTML/CSS/JS murni)
+- Seksi: Hero, Tentang, Proyek (kartu), Ide Cepat, Kontak
+- Filter kategori untuk proyek (Kreativitas / Inovasi / Eksperimen)
+- Tombol untuk menyalin ide cepat
+
+Silakan edit isi teks, tambahkan gambar ke folder repo, atau sambungkan ke file lain seperti README.md.
+--><!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kreativitas & Inovasi — Portofolio</title>
+  <meta name="description" content="Template sederhana untuk memamerkan ide, proyek kreativitas, dan inovasi. Siap dipakai di GitHub Pages." />
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#7c3aed;--muted:#9aa4b2;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:linear-gradient(180deg,#071021 0%,var(--bg) 100%);color:#e6eef8;line-height:1.5}
+    .container{max-width:960px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav a{color:var(--muted);text-decoration:none;margin-left:14px}
+    .hero{background:linear-gradient(90deg, rgba(124,58,237,0.12), transparent);padding:28px;border-radius:14px;display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:center}
+    h1{margin:0;font-size:26px}
+    p.lead{color:var(--muted);margin-top:8px}
+    .cta{margin-top:16px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+    .small-card{background:var(--card);padding:12px;border-radius:10px}
+    section{margin-top:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .project{background:var(--glass);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
+    .project h3{margin:0 0 6px 0}
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted)}
+    footer{color:var(--muted);text-align:center;margin:30px 0}
+    .controls{display:flex;gap:8px;align-items:center}
+    input.search{background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:8px;color:inherit}
+    @media (max-width:720px){.hero{grid-template-columns:1fr}
+      .logo{width:44px;height:44px}
+      h1{font-size:20px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">KI</div>
+        <div>
+          <div style="font-weight:700">Kreativitas & Inovasi</div>
+          <div style="font-size:13px;color:var(--muted)">Ide — Eksperimen — Dampak</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">Tentang</a>
+        <a href="#projects">Proyek</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </header><main>
+  <section class="hero">
+    <div>
+      <h1>Ruang kecil untuk menumbuhkan ide besar</h1>
+      <p class="lead">Template ini dirancang untuk menampilkan portofolio kreativitas dan inovasi — cocok untuk pelajar, pembuat proyek, atau tim kecil. Upload ke GitHub Pages dan bagikan link-nya.</p>
+      <div class="cta">
+        <button class="btn" id="addProjectBtn">Tambahkan Proyek Contoh</button>
+        <button class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);margin-left:8px" id="openIdeas">Ide Cepat</button>
+      </div>
+    </div>
+
+    <aside class="small-card">
+      <div style="font-weight:700">Statistik Singkat</div>
+      <div style="margin-top:8px;color:var(--muted)">Proyek: <span id="projectCount">3</span></div>
+      <div style="margin-top:8px;color:var(--muted)">Kategori: Kreativitas · Inovasi · Eksperimen</div>
+    </aside>
+  </section>
+
+  <section id="about">
+    <h2>Tentang</h2>
+    <p style="color:var(--muted)">Halaman ini bertujuan memudahkan kamu mempresentasikan eksperimen, prototipe, dan ide kreatif. Gunakan bagian proyek untuk menautkan repository GitHub, demo, atau video pendek. Di bawah ada contoh proyek yang bisa diedit.</p>
+  </section>
+
+  <section id="projects">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>Proyek</h2>
+      <div class="controls">
+        <select id="filter" class="search">
+          <option value="all">Semua</option>
+          <option value="kreativitas">Kreativitas</option>
+          <option value="inovasi">Inovasi</option>
+          <option value="eksperimen">Eksperimen</option>
+        </select>
+        <input id="query" class="search" placeholder="Cari judul..." />
+        <button class="btn" id="searchBtn">Cari</button>
+      </div>
+    </div>
+
+    <div class="grid" id="projectsGrid" style="margin-top:12px">
+      <!-- Project cards generated by JS -->
+    </div>
+  </section>
+
+  <section id="ideas" style="margin-top:18px">
+    <h2>Ide Cepat</h2>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <div class="project" style="flex:1">
+        <h3>Workshop Micro-Prototype</h3>
+        <p style="color:var(--muted)">Sesi 2 jam membangun prototipe dari barang sehari-hari untuk memecahkan masalah lokal.</p>
+        <div class="tags"><span class="tag">kreativitas</span><span class="tag">komunitas</span></div>
+        <div style="margin-top:8px"><button class="btn" onclick="copyIdea('Workshop Micro-Prototype — Sesi 2 jam membuat prototipe dari barang bekas untuk solusi lokal')">Salin ide</button></div>
+      </div>
+
+      <div class="project" style="flex:1">
+        <h3>Hackathon Mini</h3>
+        <p style="color:var(--muted)">Tim 3-4 orang, 24 jam, tema: dampak sosial.</p>
+        <div class="tags"><span class="tag">inovasi</span><span class="tag">kompetisi</span></div>
+        <div style="margin-top:8px"><button class="btn" onclick="copyIdea('Hackathon Mini — Tema: Dampak Sosial, Durasi 24 jam, tim 3-4 orang')">Salin ide</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Kontak</h2>
+    <p style="color:var(--muted)">Tambahkan alamat GitHub, email, atau link lainnya di sini.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="githubHandle" placeholder="@username" class="search" />
+      <input id="email" placeholder="email@example.com" class="search" />
+      <button class="btn" id="saveContact">Simpan</button>
+    </div>
+    <div id="contactSaved" style="color:var(--muted);margin-top:8px"></div>
+  </section>
+
+</main>
+
+<footer>
+  <div>Template — buat oleh kamu. Sesuaikan, tambahkan repo, lalu publish ke GitHub Pages.</div>
+</footer>
+
+  </div>  <script>
+    const sampleProjects = [
+      {id:1,title:'Papan Ide Interaktif',desc:'Alat digital sederhana untuk menampung dan memilih ide terbaik dari siswa.',tags:['kreativitas'],link:'#'},
+      {id:2,title:'Sensor Sampah Pintar',desc:'Prototype inovasi untuk memantau kapasitas tong sampah di lingkungan sekolah.',tags:['inovasi','eksperimen'],link:'#'},
+      {id:3,title:'Kartu Challenge Harian',desc:'Serangkaian tantangan kecil untuk memicu kreativitas setiap hari.',tags:['kreativitas','eksperimen'],link:'#'}
+    ];
+
+    function renderProjects(list){
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = '';
+      list.forEach(p => {
+        const el = document.createElement('div'); el.className='project';
+        el.innerHTML = `<h3>${p.title}</h3><p style="color:var(--muted)">${p.desc}</p><div class="tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div><div style="margin-top:10px"><a href='${p.link}' style='color:var(--muted);font-size:13px;text-decoration:none'>Lihat repo / demo</a></div>`;
+        grid.appendChild(el);
+      });
+      document.getElementById('projectCount').innerText = list.length;
+    }
+
+    // initial render
+    renderProjects(sampleProjects);
+
+    document.getElementById('filter').addEventListener('change', ()=>applyFilters());
+    document.getElementById('searchBtn').addEventListener('click', ()=>applyFilters());
+    document.getElementById('query').addEventListener('keyup', (e)=>{ if(e.key==='Enter') applyFilters(); });
+
+    function applyFilters(){
+      const f = document.getElementById('filter').value;
+      const q = document.getElementById('query').value.toLowerCase().trim();
+      let list = sampleProjects.slice();
+      if(f!=='all') list = list.filter(p=>p.tags.includes(f));
+      if(q) list = list.filter(p=>p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
+      renderProjects(list);
+    }
+
+    document.getElementById('addProjectBtn').addEventListener('click', ()=>{
+      const newProj = {id:Date.now(),title:'Proyek Baru',desc:'Deskripsi singkat proyek baru — edit di index.html',tags:['eksperimen'],link:'#'};
+      sampleProjects.push(newProj);
+      renderProjects(sampleProjects);
+      alert('Proyek contoh ditambahkan. Edit file untuk menyimpan perubahan permanen.');
+    });
+
+    function copyIdea(text){
+      navigator.clipboard?.writeText(text).then(()=>{alert('Ide disalin ke clipboard!')}).catch(()=>{prompt('Salin ide ini:',text)});
+    }
+
+    document.getElementById('openIdeas').addEventListener('click', ()=>{
+      location.hash = '#ideas';
+      document.getElementById('projectsGrid').scrollIntoView({behavior:'smooth'});
+    });
+
+    document.getElementById('saveContact').addEventListener('click', ()=>{
+      const gh = document.getElementById('githubHandle').value.trim();
+      const em = document.getElementById('email').value.trim();
+      if(!gh && !em){ document.getElementById('contactSaved').innerText='Isi github atau email dulu.'; return; }
+      document.getElementById('contactSaved').innerText = `Tersimpan: ${gh ? gh+' ' : ''}${em ? '• '+em : ''}`;
+    });
+  </script></body>
+</html>
